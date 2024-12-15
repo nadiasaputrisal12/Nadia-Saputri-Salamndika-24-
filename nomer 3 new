@@ -1,0 +1,37 @@
+def hitung_tarif_parkir(lama_parkir):
+    # Tarif dasar
+    tarif_awal = 3000
+    tarif_tambahan = 1500
+    denda = 10000
+
+    # Validasi jika parkir kurang dari atau sama dengan 0 jam
+    if lama_parkir <= 0:
+        return tarif_awal  # Tarif minimum Rp 3000
+
+    # Hitung tarif
+    if lama_parkir <= 2:
+        total_tarif = tarif_awal
+    else:
+        total_tarif = tarif_awal + (lama_parkir - 2) * tarif_tambahan
+        if lama_parkir > 24:
+            total_tarif += denda
+    
+    return total_tarif
+
+
+# Input dari pengguna dengan validasi
+while True:
+    try:
+        lama_parkir = float(input("Masukkan lama parkir (jam): "))
+        if lama_parkir < 0:
+            print("Durasi parkir tidak boleh negatif. Silakan coba lagi.")
+            continue
+        break
+    except ValueError:
+        print("Input tidak valid. Masukkan angka yang benar.")
+
+# Hitung tarif parkir
+tarif = hitung_tarif_parkir(lama_parkir)
+
+# Output hasil
+print(f"Total tarif parkir: Rp {tarif:,.0f}")
